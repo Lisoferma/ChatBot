@@ -1,12 +1,10 @@
-﻿using AIMLbot.AIMLTagHandlers;
-
-namespace LisofermaChatBot;
+﻿namespace LisofermaChatBot;
 
 internal class Program
 {
     static void Main()
     {
-        IBotResponse chatbot = new ChatBot();
+        IBotResponse chatbot = new ChatBotAIML();
         string? input;
 
         do

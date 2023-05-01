@@ -1,6 +1,6 @@
 ﻿namespace LisofermaChatBot;
 
-interface IBotResponse
+public interface IBotResponse
 {
     string GetAnswer(string input);
 }
