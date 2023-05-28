@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LisofermaChatBot", "LisofermaChatBot.csproj", "{49E3EDAC-BC89-4119-87C0-CA8EF45B18BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot", "ChatBot.csproj", "{49E3EDAC-BC89-4119-87C0-CA8EF45B18BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChatBotGUI", "ChatBotGUI", "{51C6636B-189B-4CC2-9D71-B35D6FBDD651}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBotGUIExample", "ChatBotGUIExample\ChatBotGUIExample.csproj", "{C87A9649-3515-4D22-BCCA-C55FA298DA55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotGUI", "ChatBotGUIExample\ChatBotGUI.csproj", "{C87A9649-3515-4D22-BCCA-C55FA298DA55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
