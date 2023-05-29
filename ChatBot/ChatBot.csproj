@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="AIMLbot">
       <HintPath>bin\Debug\net6.0\AIMLbot.dll</HintPath>
     </Reference>
