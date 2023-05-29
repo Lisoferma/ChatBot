@@ -23,7 +23,7 @@ public class ChatBotController : IBotResponse
 
     public string GetAnswer(string input)
     {
-        // Поиск обработчика ввода, если не найден - null.
+        // Поиск подходящего обработчика ввода, если не найден - null.
         InputHandler? foundHandler = 
             _dictInputHandlers.FirstOrDefault(handler => handler.Key.IsMatch(input)).Value;
 
