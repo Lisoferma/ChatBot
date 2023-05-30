@@ -65,7 +65,7 @@ public class ValuteRate
     public string Name { get; set; }
 
     /// <value>
-    /// Значение валюты.
+    /// Курс валюты.
     /// </value>
     public float Value { get; set; }
 
