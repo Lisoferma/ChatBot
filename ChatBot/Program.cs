@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
-using static LisofermaChatBot.UserCommands;
-using ChatBot;
+using static ChatBot.UserCommands;
 
-namespace LisofermaChatBot;
+namespace ChatBot;
 
 internal class Program
 {

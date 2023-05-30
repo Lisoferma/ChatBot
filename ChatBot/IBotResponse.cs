@@ -1,4 +1,4 @@
-﻿namespace LisofermaChatBot;
+﻿namespace ChatBot;
 
 public interface IBotResponse
 {

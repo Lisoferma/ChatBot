@@ -1,6 +1,6 @@
 ﻿using AIMLbot;
 
-namespace LisofermaChatBot;
+namespace ChatBot;
 
 public class ChatBotAIML : IBotResponse
 {

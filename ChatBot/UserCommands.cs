@@ -1,9 +1,8 @@
-﻿using ChatBot;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Data;
 using System.Net;
 
-namespace LisofermaChatBot;
+namespace ChatBot;
 
 /// <summary>
 /// Методы для команд пользователя.

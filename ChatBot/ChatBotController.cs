@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace LisofermaChatBot;
+namespace ChatBot;
 
 /// <summary>
 /// Контроллер для обработки сообщений пользователя.
