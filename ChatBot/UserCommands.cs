@@ -37,6 +37,9 @@ public static class UserCommands
     /// <returns>Результат выражения.</returns>
     public static string CalculateExpressionFromString(string input)
     {
+        if (string.IsNullOrEmpty(input))
+            throw new ArgumentNullException(nameof(input), "Input cannot be null or empty");
+
         DataTable table = new();
 
         // Убрать слово перед выражением.
@@ -57,7 +60,7 @@ public static class UserCommands
     /// <summary>
     /// Информация о курсе валют.
     /// </summary>
-    /// <returns>Курс валют в виде "Валюта курс".</returns>
+    /// <returns>Курс валют в виде "Название валюты курс".</returns>
     public static string GetCurrencyRate(string input)
     {
         CurrencyRate? currencyRate = RequestCurrencyRate();
@@ -78,7 +81,7 @@ public static class UserCommands
     /// <summary>
     /// Запрос информации о курсе валют.
     /// </summary>
-    /// <returns>Курс валют</returns>
+    /// <returns>Курс валют, null если не удалось.</returns>
     private static CurrencyRate? RequestCurrencyRate()
     {
         string url = "https://www.cbr-xml-daily.ru/daily_json.js";
