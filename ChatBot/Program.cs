@@ -41,10 +41,6 @@ internal class Program
                 TimeStamp = DateTime.Now
             };
 
-            Console.WriteLine(userMessage.Author);
-            Console.WriteLine(userMessage.Text);
-            Console.WriteLine(userMessage.TimeStamp);
-
             messages.Add(userMessage);
 
             string answer = chatbot.GetAnswer(input!);
@@ -60,13 +56,6 @@ internal class Program
             messages.Add(botMessage);
         }
         while (input != "q");
-
-        foreach (Message item in messages)
-        {
-            Console.WriteLine(item.Author);
-            Console.WriteLine(item.Text);
-            Console.WriteLine(item.TimeStamp);
-        }
 
         string path = "messages.xml";
         string xml =
