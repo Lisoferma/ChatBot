@@ -15,14 +15,14 @@ public class Message
     /// </summary>
     public string Author
     {
-        get => Text;
+        get => Author;
 
         set
         {
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentNullException(nameof(Author), "Value cannot be null or empty");
 
-            Text = value;
+            Author = value;
         }      
     }
 
