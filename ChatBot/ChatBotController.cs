@@ -9,9 +9,9 @@ namespace LisofermaChatBot;
 public class ChatBotController : IBotResponse
 {
     /// <summary>
-    /// Текущий чатбот от которого пользователь будет получать ответ.
+    /// Чатбот от которого пользователь будет получать ответ.
     /// </summary>
-    public IBotResponse CurrentBot { get; set; }
+    public IBotResponse Chatbot { get; set; }
 
     /// <summary>
     /// Делегат для методов обработки сообщений и команд пользователя.
@@ -36,7 +36,7 @@ public class ChatBotController : IBotResponse
     /// <param name="chatBot">Чатбот который будет отвечать на сообщения.</param>
     public ChatBotController(IBotResponse chatBot)
     {       
-        CurrentBot = chatBot;
+        Chatbot = chatBot;
         _dictInputHandlers = new Dictionary<Regex, InputHandler>();
     }
 
@@ -56,7 +56,7 @@ public class ChatBotController : IBotResponse
         if (foundHandler != null)
             return foundHandler(input);
         else
-            return CurrentBot.GetAnswer(input);
+            return Chatbot.GetAnswer(input);
     }
 
 
