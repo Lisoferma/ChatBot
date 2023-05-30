@@ -25,13 +25,13 @@ public class ChatBotController : IBotResponse
 
 
     /// <summary>
-    /// Инициализирует текущий чатбот как ChatBotAIML.
+    /// Инициализирует чатбот как ChatBotAIML.
     /// </summary>
     public ChatBotController() : this(new ChatBotAIML()) { }
 
 
     /// <summary>
-    /// Инициализировать и задать текущий чатбот. 
+    /// Инициализировать и задать чатбот. 
     /// </summary>
     /// <param name="chatBot">Чатбот который будет отвечать на сообщения.</param>
     public ChatBotController(IBotResponse chatBot)
