@@ -1,6 +1,6 @@
 ﻿namespace ChatBot;
 
-public interface IMessagesStorage
+public interface IChatHistoryStorage
 {
     void Save(ICollection<Message> messages);
 

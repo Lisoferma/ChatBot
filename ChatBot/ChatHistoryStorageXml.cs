@@ -1,6 +1,6 @@
 ﻿namespace ChatBot;
 
-public class MessagesStorageInXml : IMessagesStorage
+public class ChatHistoryStorageXml : IChatHistoryStorage
 {
     private string _filepath;
 
@@ -22,7 +22,7 @@ public class MessagesStorageInXml : IMessagesStorage
     }
 
 
-    public MessagesStorageInXml()
+    public ChatHistoryStorageXml()
     {
         _filepath = "Chat history";
     }
