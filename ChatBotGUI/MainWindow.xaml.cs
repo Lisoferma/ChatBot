@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using ChatBot;
@@ -17,19 +19,30 @@ public partial class MainWindow : Window
     public string Username { get; set; }
     public const string BotName = "Bot";
 
-    private List<Message> chatHistory;
+    public ObservableCollection<Message> chatHistory;
     private readonly ChatBotController chatbot;
 
 
     public MainWindow()
     {
+        InitializeComponent();
         DataContext = this;
+
         Username = "User";
-        chatHistory = new List<Message>();
+        chatHistory = new ObservableCollection<Message>();
         chatbot = new ChatBotController();
 
-        InitializeInputHandler();
-        InitializeComponent();           
+        Message userMessage = new()
+        {
+            Text = "test1231231232342 432452",
+            Author = Username,
+            TimeStamp = DateTime.Now
+        };
+        chatHistory.Add(userMessage);
+        
+        ListView_chat.ItemsSource = chatHistory;
+
+        InitializeInputHandler(chatbot);
     }
 
 
@@ -53,7 +66,6 @@ public partial class MainWindow : Window
             TimeStamp = DateTime.Now
         };
 
-        TextBlock_chat.Text += $"{Username}: {input}\n";
         chatHistory.Add(userMessage);
 
         string answer = chatbot.GetAnswer(input);
@@ -65,27 +77,27 @@ public partial class MainWindow : Window
             TimeStamp = DateTime.Now
         };
 
-        TextBlock_chat.Text += $"{BotName}: {answer}\n";
-        ScrollViewer_chatScroll.ScrollToEnd();
         chatHistory.Add(botMessage);
+
+        ListView_chat.ScrollIntoView(chatHistory.LastOrDefault());
     }
 
 
-    private void InitializeInputHandler()
+    private void InitializeInputHandler(ChatBotController controller)
     {
-        chatbot.AddInputHandler(
+        controller.AddInputHandler(
             new Regex(@"(time)|(время)|(который час)|(который час)"),
             GetTime);
 
-        chatbot.AddInputHandler(
+        controller.AddInputHandler(
             new Regex(@"(date)|(дата)|(какая сегодня дата)"),
             GetDate);
 
-        chatbot.AddInputHandler(
+        controller.AddInputHandler(
             new Regex(@"(calculate)|(compute)|(вычисли)|(посчитай)"),
             CalculateExpressionFromString);
 
-        chatbot.AddInputHandler(
+        controller.AddInputHandler(
             new Regex(@"(currency rate)|(курс валют)|(курс)"),
             GetCurrencyRate);
     }
@@ -95,7 +107,7 @@ public partial class MainWindow : Window
     {
         string path = "messages.xml";
         string xml =
-            ObjectSerializerToXml< List<Message> >.ToXml(chatHistory);
+            ObjectSerializerToXml<ObservableCollection<Message>>.ToXml(chatHistory);
 
         using (StreamWriter writer = new(path, false))
         {
