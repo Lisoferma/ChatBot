@@ -1,12 +1,56 @@
-﻿<Window x:Class="ChatBotGUIExample.MainWindow"
+﻿<Window x:Class="ChatBotGUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ChatBotGUIExample"
+        xmlns:local="clr-namespace:ChatBotGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Chatbot" Height="380" Width="400">
+
+    <Grid Background="#FF1D1D1D">
+
+        <Grid Margin="20,24,20,45">
+            <ScrollViewer x:Name="ScrollViewer_chatScroll" VerticalScrollBarVisibility="Hidden">
+                
+                <TextBlock x:Name="TextBlock_chat"
+                           FontSize="16"
+                           Foreground="#FF00D43E"
+                           TextWrapping="Wrap"
+                           ScrollViewer.VerticalScrollBarVisibility="Auto"
+                           ScrollViewer.CanContentScroll="True"
+                           Height="Auto"
+                           Width="Auto"
+                           ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            
+            </ScrollViewer>
+        </Grid>
+
+        <TextBox x:Name="TextBox_input" Margin="20,0,80,20"
+                 Background="#FF171717"
+                 BorderBrush="#FF00D43E"
+                 CaretBrush="#FF00D43E"
+                 Height="25"
+                 VerticalAlignment="Bottom"
+                 SelectionTextBrush="#FF00D43E"
+                 SelectionBrush="#FF00D43E"
+                 Foreground="#FF00D43E"
+                 FontSize="16"
+                 BorderThickness="0,0,0,1"/>
+
+        <Button x:Name="Button_send"
+                Margin="0,0,20,20"
+                Height="25"
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Right"
+                Width="60"
+                BorderThickness="0,0,0,1"
+                BorderBrush="#FF00D43E"
+                FontSize="16"
+                Content="➥"
+                Foreground="#FF00D43E"
+                Background="#FF193320"
+                Click="Button_send_Click"/>
 
     </Grid>
+
 </Window>
