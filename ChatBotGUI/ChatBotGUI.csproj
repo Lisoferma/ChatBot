@@ -8,7 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\appIcon.ico" />
+    <None Remove="Images\bot.png" />
+    <None Remove="Images\user.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChatBot\ChatBot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\appIcon.ico" />
+    <Resource Include="Images\bot.png" />
+    <Resource Include="Images\user.jpg" />
   </ItemGroup>
 
 </Project>
