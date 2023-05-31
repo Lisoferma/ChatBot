@@ -1,16 +1,46 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ChatBot;
+﻿namespace ChatBot;
 
 public class MessagesStorageInXml : IMessagesStorage
 {
-    public void Save(ObservableCollection<Message> messages)
+    private string _filepath;
+
+
+    public string Filepath
     {
-        throw new NotImplementedException();
+        get => _filepath;
+
+        set
+        {
+            if (string.IsNullOrEmpty(_filepath))
+            {
+                throw new ArgumentNullException(
+                    nameof(_filepath), "Filepath cannot be null or empty");
+            }
+
+            _filepath = value;
+        }
     }
 
 
-    public void Load(ObservableCollection<Message> messages)
+    public MessagesStorageInXml()
+    {
+        _filepath = "Chat history";
+    }
+
+
+    public void Save(ICollection<Message> messages)
+    {
+        string xml =
+            ObjectSerializerToXml<ICollection<Message>>.ToXml(messages);
+
+        using (StreamWriter writer = new(Filepath, false))
+        {
+            writer.WriteLine(xml);
+        }
+    }
+
+
+    public void Load(ICollection<Message> messages)
     {
         throw new NotImplementedException();
     }

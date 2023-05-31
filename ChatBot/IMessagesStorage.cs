@@ -1,10 +1,8 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ChatBot;
+﻿namespace ChatBot;
 
 public interface IMessagesStorage
 {
-    void Save(ObservableCollection<Message> messages);
+    void Save(ICollection<Message> messages);
 
-    void Load(ObservableCollection<Message> messages);
+    void Load(ICollection<Message> messages);
 }
