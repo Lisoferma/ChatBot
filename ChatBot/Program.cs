@@ -28,6 +28,7 @@ internal class Program
             new Regex(@"(currency rate)|(курс валют)|(курс)"),
             GetCurrencyRate);
 
+
         do
         {
             Console.Write("You: ");
@@ -55,6 +56,7 @@ internal class Program
             messages.Add(botMessage);
         }
         while (input != "q");
+
 
         string path = "messages.xml";
         string xml =
