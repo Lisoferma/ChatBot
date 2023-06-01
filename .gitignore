@@ -34,6 +34,7 @@ bld/
 [Ll]ogs/
 
 !/bin/Debug/net6.0-windows/AIMLAnswers
+!/bin/Debug/net6.0-windows/config
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
