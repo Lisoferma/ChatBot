@@ -2,11 +2,19 @@
 
 namespace ChatBot;
 
+/// <summary>
+/// Чатбот основанный на технологии AIML.
+/// </summary>
 public class ChatBotAIML : IBotResponse
-{
-    public const string Username = "username";
+{   
+    // AIML чатбот.
     private readonly Bot _botAIML;
+
+    // Используется для инициализации бота.
     private readonly User _user;
+
+    // Используется для инициализации бота.
+    public const string Username = "username";
 
 
     public ChatBotAIML()
@@ -17,6 +25,10 @@ public class ChatBotAIML : IBotResponse
     }
 
 
+    /// <summary>
+    /// Загружает конфигурацию бота и AIML файл,
+    /// путь которого указан в конфигурации.
+    /// </summary>
     private void Initialize()
     {
         _botAIML.loadSettings();
@@ -24,6 +36,11 @@ public class ChatBotAIML : IBotResponse
     }
 
 
+    /// <summary>
+    /// Получить ответ от бота, на основе строки.
+    /// </summary>
+    /// <param name="input">Строка которую будет обрабатывать бот.</param>
+    /// <returns>Ответ от бота.</returns>
     public string GetAnswer(string input)
     {
         Request request = new (input, _user, _botAIML);
