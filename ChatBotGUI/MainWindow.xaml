@@ -3,14 +3,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatBotGUI"
-        xmlns:ChatBot="clr-namespace:ChatBot;assembly=ChatBot" x:Class="ChatBotGUI.MainWindow"
+        xmlns:ChatBot="clr-namespace:ChatBot;assembly=ChatBot"
+        x:Class="ChatBotGUI.MainWindow"
         mc:Ignorable="d"
         Title="Chatbot"
         Height="440" Width="440"
-        Icon="/Images/appIcon.ico">
+        Icon="/Images/appIcon.ico"
+        WindowStartupLocation="CenterScreen">
         
     <Grid Background="#FF1D1D1D">
-
+        
+        <!-- Список сообщений -->
         <ListView x:Name="ListView_chat"
                   Margin="20,19,20,55"
                   Background="{x:Null}"
@@ -35,7 +38,7 @@
                                 <Style TargetType="Ellipse">
                                     <Setter Property="Fill">
                                         <Setter.Value>
-                                            <ImageBrush ImageSource="Images/user.jpg"
+                                            <ImageBrush ImageSource="Images/user.png"
                                                         Stretch="UniformToFill">
                                             </ImageBrush>
                                         </Setter.Value>
@@ -102,6 +105,7 @@
         </ListView>
 
         
+        <!-- Поле ввода сообщения -->
         <TextBox x:Name="TextBox_input" Margin="20,0,80,20"
                  Background="#FF171717"
                  BorderBrush="#FF00D43E"
@@ -115,6 +119,7 @@
                  BorderThickness="0,0,0,1"/>
 
         
+        <!-- Кнопка отправить сообщение -->
         <Button x:Name="Button_send"
                 Margin="0,0,20,20"
                 Height="25"
