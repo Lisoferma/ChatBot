@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -12,15 +10,29 @@ using static ChatBot.UserCommands;
 namespace ChatBotGUI;
 
 /// <summary>
-/// Interaction logic for MainWindow.xaml
+/// Логика взаимодействия для MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
-    public string Username { get; set; }
+    // Отображаемое имя пользователя.
+    private string _username;
+
+    // Отображаемое имя бота.
     public const string BotName = "Bot";
 
+    // Путь к файлу сохранения истории чата.
+    private string chatHistoryFilepath;
+
+    /// <summary>
+    /// Хранит историю сообщений чата.
+    /// </summary>
     public ObservableCollection<Message> chatHistory;
-    private readonly ChatBotController chatbot;
+
+    // Предоставляет методы сохранения и загрузки истории сообщений.
+    private readonly IChatHistoryStorage chatHistoryStorage;
+
+    // Чатбот который будет отвечать пользователю.
+    private readonly IBotResponse chatbot;
 
 
     public MainWindow()
@@ -28,30 +40,56 @@ public partial class MainWindow : Window
         InitializeComponent();
         DataContext = this;
 
-        Username = "User";
-        chatHistory = new ObservableCollection<Message>();
+        _username = "User";         
         chatbot = new ChatBotController();
+        chatHistory = new ObservableCollection<Message>();
 
-        Message userMessage = new()
-        {
-            Text = "test1231231232342 432452",
-            Author = Username,
-            TimeStamp = DateTime.Now
-        };
-        chatHistory.Add(userMessage);
-        
-        ListView_chat.ItemsSource = chatHistory;
+        // Получаем Username из этого окна.
+        LoginWindow loginWindow = new(this);
+        loginWindow.ShowDialog();
 
-        InitializeInputHandler(chatbot);
+        chatHistoryFilepath = $"{Username}.xml";
+        chatHistoryStorage = new ChatHistoryStorageXml(chatHistoryFilepath);
+
+        LoadChatHistory();
+        InitializeInputHandler((ChatBotController)chatbot);
     }
 
 
+    /// <summary>
+    /// Имя пользователя.
+    /// </summary>
+    public string Username
+    {
+        get => _username;
+
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException(
+                    nameof(Username), "Username cannot be null or empty");
+            }
+
+            _username = value;
+        }
+    }
+
+
+    /// <summary>
+    /// Обработчик нажатия на кнопку отправить.
+    /// Вызывает метод для получения ответа от бота.
+    /// </summary>
     private void Button_send_Click(object sender, RoutedEventArgs e)
     {
         GetChatbotAnswer();
     }
 
 
+    /// <summary>
+    /// Получить ответ от бота на основе строки
+    /// из <see cref="TextBox_input"/> и вывести на экран.
+    /// </summary>
     private void GetChatbotAnswer()
     {
         string input = TextBox_input.Text;
@@ -83,7 +121,13 @@ public partial class MainWindow : Window
     }
 
 
-    private void InitializeInputHandler(ChatBotController controller)
+    /// <summary>
+    /// Добавляет обработчики для сообщений пользователя.
+    /// </summary>
+    /// <param name="controller">
+    /// <see cref="ChatBotController"/> в который нужно добавить обработчики.
+    /// </param>
+    private static void InitializeInputHandler(ChatBotController controller)
     {
         controller.AddInputHandler(
             new Regex(@"(time)|(время)|(который час)|(который час)"),
@@ -102,16 +146,37 @@ public partial class MainWindow : Window
             GetCurrencyRate);
     }
 
-
+    
+    /// <summary>
+    /// Метод вызываемый при закрытии окна.
+    /// Сохраняет историю сообщений.
+    /// </summary>
+    /// <param name="e"></param>
     protected override void OnClosing(CancelEventArgs e)
     {
-        string path = "messages.xml";
-        string xml =
-            ObjectSerializerToXml<ObservableCollection<Message>>.ToXml(chatHistory);
-
-        using (StreamWriter writer = new(path, false))
+        try
         {
-            writer.WriteLine(xml);
+            chatHistoryStorage.Save(chatHistory);
         }
+        catch
+        {
+            MessageBox.Show("Не удалось сохранить историю сообщений");
+        }    
+    }
+
+
+    /// <summary>
+    /// Загрузить историю чата из <see cref="chatHistoryFilepath"/>.
+    /// </summary>
+    private void LoadChatHistory()
+    {
+        ObservableCollection<Message>? loadHistory =
+            chatHistoryStorage.LoadFrom(chatHistoryFilepath);
+
+        if (loadHistory != null)
+            chatHistory = loadHistory;
+
+        ListView_chat.ItemsSource = chatHistory;
+        ListView_chat.ScrollIntoView(chatHistory.LastOrDefault());
     }
 }
