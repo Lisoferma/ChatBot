@@ -68,7 +68,7 @@ public static class UserCommands
             return "Не удалось узнать курс валют. Проверьте соединение с Интернетом.";
 
         string result =
-            $"\n{currencyRate.Valute.USD.Name} {currencyRate.Valute.USD.Value}\n" +
+            $"{currencyRate.Valute.USD.Name} {currencyRate.Valute.USD.Value}\n" +
             $"{currencyRate.Valute.EUR.Name} {currencyRate.Valute.EUR.Value}\n" +
             $"{currencyRate.Valute.CNY.Name} {currencyRate.Valute.CNY.Value}\n" +
             $"{currencyRate.Valute.JPY.Name} {currencyRate.Valute.JPY.Value}";
@@ -97,8 +97,10 @@ public static class UserCommands
                 response = streamReader.ReadToEnd();
             }
 
-            CurrencyRate? cbr = JsonConvert.DeserializeObject<CurrencyRate>(response);
-            return cbr;
+            CurrencyRate? currencyRate = 
+                JsonConvert.DeserializeObject<CurrencyRate>(response);
+
+            return currencyRate;
         }
         catch
         {
