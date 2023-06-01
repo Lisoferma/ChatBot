@@ -1,0 +1,53 @@
+﻿<Window x:Class="ChatBotGUI.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatBotGUI"
+        mc:Ignorable="d"
+        Title="Login"
+        Height="200" Width="320"
+        Icon="/Images/appIcon.ico"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Background="#FF1D1D1D">
+
+        <Label Content="Hello! What is your name?"
+               Foreground="#FF00D43E"
+               FontSize="16"
+               Margin="0,29,0,0"
+               FontStretch="Normal"
+               HorizontalAlignment="Center"
+               Height="30"
+               VerticalAlignment="Top"/>
+
+        <TextBox x:Name="TextBox_login"
+                 Background="#FF171717"
+                 BorderBrush="#FF00D43E"
+                 CaretBrush="#FF00D43E"
+                 Height="26"
+                 VerticalAlignment="Center"
+                 SelectionTextBrush="#FF00D43E"
+                 SelectionBrush="#FF00D43E"
+                 Foreground="#FF00D43E"
+                 FontSize="16"
+                 BorderThickness="0,0,0,1"
+                 Margin="50,0,50,0"/>
+
+        <Button x:Name="Button_login"
+                Margin="0,0,0,20" 
+                HorizontalAlignment="Center"
+                Width="90"
+                BorderThickness="1,1,1,1"
+                BorderBrush="#FF00D43E"
+                FontSize="16"
+                Content="Login"
+                Foreground="#FF00D43E"
+                Background="#FF193320"
+                VerticalContentAlignment="Center"
+                Click="Button_login_Click" Height="30" VerticalAlignment="Bottom"/>
+
+    </Grid>
+
+</Window>
