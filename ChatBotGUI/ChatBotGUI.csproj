@@ -10,7 +10,8 @@
   <ItemGroup>
     <None Remove="Images\appIcon.ico" />
     <None Remove="Images\bot.png" />
-    <None Remove="Images\user.jpg" />
+    <None Remove="Images\user.png" />
+    <None Remove="MainWindow.xaml.cs~RFae74f3.TMP" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +21,7 @@
   <ItemGroup>
     <Resource Include="Images\appIcon.ico" />
     <Resource Include="Images\bot.png" />
-    <Resource Include="Images\user.jpg" />
+    <Resource Include="Images\user.png" />
   </ItemGroup>
 
 </Project>
