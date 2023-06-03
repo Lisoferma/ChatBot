@@ -10,4 +10,4 @@
 ![image](https://github.com/Lisoferma/ChatBot/assets/115818156/301868e3-03f5-417c-abbe-739d92235f95 "Чат с ботом")
 
 ## UML-диаграмма классов
-![Chatbot](https://github.com/Lisoferma/ChatBot/assets/115818156/87ce6dbd-24c7-4c44-b7ad-279df13d0d62)
+![Chatbot](https://github.com/Lisoferma/ChatBot/assets/115818156/073c1f1f-5c48-4a2a-9eb8-3f7178077e97)
